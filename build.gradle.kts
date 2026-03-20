@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "4.0.4"
     id("io.spring.dependency-management") version "1.1.7"
+    id("com.diffplug.spotless") version "7.0.4"
 }
 
 group = "com.example"
@@ -31,4 +32,25 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+spotless {
+  java { googleJavaFormat("1.35.0") }
+  kotlinGradle { ktfmt() }
+  yaml {
+    target("**/*.yaml", "**/*.yml")
+    jackson()
+  }
+  format("markdown") {
+    target("**/*.md")
+    endWithNewline()
+    trimTrailingWhitespace()
+    leadingTabsToSpaces(2)
+  }
+  format("misc") {
+    target(".gitignore", ".gitattributes")
+    endWithNewline()
+    trimTrailingWhitespace()
+    leadingTabsToSpaces(2)
+  }
 }
