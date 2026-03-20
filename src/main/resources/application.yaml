@@ -1,3 +1,4 @@
+---
 spring:
   application:
-    name: fh3
+    name: "fh3"
