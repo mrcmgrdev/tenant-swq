@@ -62,6 +62,18 @@ Run manually:
 ./gradlew spotbugsMain
 ```
 
+## Architecture Rules
+
+This project uses [ArchUnit](https://www.archunit.org/) to enforce architectural constraints via unit tests. The rules are defined in `SpringBootArchitectureTest` and enforce:
+
+- **Package structure** — `@Controller`/`@RestController` in `..controller..`, `@Service` in `..service..`, `@Repository` in `..repository..`, `@Entity` in `..entity..`, `@Configuration` in `..config..`
+- **Layer dependencies** — controllers must not access repositories or entities directly (use DTOs), services must not depend on controllers, repositories must not depend on services
+- **Naming conventions** — controllers suffixed with `Controller`, services with `Service`, repositories with `Repository`
+- **Best practices** — no `@Autowired` field injection (use constructor injection), controller methods must be public, repositories must be interfaces
+- **No circular dependencies** between top-level packages
+
+The rules run as part of `./gradlew test`.
+
 ## Commit Convention
 
 This project enforces [Conventional Commits](https://www.conventionalcommits.org/). A **commit-msg hook** validates every commit message and rejects it if it doesn't follow the format:
