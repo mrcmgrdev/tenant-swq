@@ -1,6 +1,11 @@
 # Tenant App
 
-A Spring Boot 4 web application with JPA and PostgreSQL.
+A multi-tenant web application built with:
+
+- **Java 25** (Temurin)
+- **Spring Boot 4.0** (Web MVC, JPA, DevTools, Docker Compose)
+- **PostgreSQL** (via Docker Compose)
+- **Gradle** (Kotlin DSL)
 
 ## Prerequisites
 
