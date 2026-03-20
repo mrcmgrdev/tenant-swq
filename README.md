@@ -50,7 +50,17 @@ The project uses [Spring Boot Docker Compose support](https://docs.spring.io/spr
 
 This project uses [Spotless](https://github.com/diffplug/spotless) as the **single source of truth** for code formatting. IDE or editor formatters must not override Spotless — disable any conflicting formatter.
 
-A **Git pre-commit hook** runs `spotlessCheck` before every commit and **rejects the commit if formatting is incorrect**. Run `./gradlew spotlessApply` to fix, then commit again. The hook is installed via the [gradle-pre-commit-git-hooks](https://github.com/DanySK/gradle-pre-commit-git-hooks) plugin and set up on the first Gradle invocation — no manual configuration needed.
+A **Git pre-commit hook** runs `spotlessCheck` before every commit and **rejects the commit if formatting is incorrect**. Run `./gradlew spotlessApply` to fix, then commit again. Both hooks are installed via the [gradle-pre-commit-git-hooks](https://github.com/DanySK/gradle-pre-commit-git-hooks) plugin and set up on the first Gradle invocation — no manual configuration needed.
+
+## Commit Convention
+
+This project enforces [Conventional Commits](https://www.conventionalcommits.org/). A **commit-msg hook** validates every commit message and rejects it if it doesn't follow the format:
+
+```
+<type>[optional scope]: <description>
+```
+
+Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `build`, `ci`, `perf`.
 
 | File type       | Formatter                                                          |
 |-----------------|--------------------------------------------------------------------|
