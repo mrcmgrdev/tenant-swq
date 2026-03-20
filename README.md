@@ -40,3 +40,27 @@ The project uses [Spring Boot Docker Compose support](https://docs.spring.io/spr
 ```bash
 ./gradlew test
 ```
+
+## Code Formatting
+
+This project uses [Spotless](https://github.com/diffplug/spotless) as the **single source of truth** for code formatting. IDE or editor formatters must not override Spotless — disable any conflicting formatter and always run `spotlessApply` before committing.
+
+| File type       | Formatter                                                          |
+|-----------------|--------------------------------------------------------------------|
+| Java            | [Google Java Format](https://github.com/google/google-java-format) |
+| Gradle (`.kts`) | [ktfmt](https://github.com/facebook/ktfmt)                         |
+| YAML            | Jackson                                                            |
+| Markdown        | Trailing whitespace, newline, tabs → spaces                        |
+| Misc            | Trailing whitespace, newline, tabs → spaces                        |
+
+Check formatting:
+
+```bash
+./gradlew spotlessCheck
+```
+
+Auto-fix formatting:
+
+```bash
+./gradlew spotlessApply
+```
