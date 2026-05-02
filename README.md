@@ -64,13 +64,11 @@ Run manually:
 
 ## Architecture Rules
 
-This project uses [ArchUnit](https://www.archunit.org/) to enforce architectural constraints via unit tests. The rules are defined in `SpringBootArchitectureTest` and enforce:
+This project uses [ArchUnit](https://www.archunit.org/) to enforce architectural constraints via unit tests. The codebase follows a **feature-based package structure** (e.g. `tenant/`, `config/`) rather than layer-based packages. The rules are defined in `SpringBootArchitectureTest` and enforce:
 
-- **Package structure** — `@Controller`/`@RestController` in `..controller..`, `@Service` in `..service..`, `@Repository` in `..repository..`, `@Entity` in `..entity..`, `@Configuration` in `..config..`
-- **Layer dependencies** — controllers must not access repositories or entities directly (use DTOs), services must not depend on controllers, repositories must not depend on services
+- **No circular dependencies** between feature packages
 - **Naming conventions** — controllers suffixed with `Controller`, services with `Service`, repositories with `Repository`
-- **Best practices** — no `@Autowired` field injection (use constructor injection), controller methods must be public, repositories must be interfaces
-- **No circular dependencies** between top-level packages
+- **Best practices** — no `@Autowired` field injection (use constructor injection), controllers must use `@RestController`, controller methods must be public, repositories must be interfaces
 
 The rules run as part of `./gradlew test`.
 
